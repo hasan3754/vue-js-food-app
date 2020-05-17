@@ -41,7 +41,27 @@ export default {
   },
   methods: {
     addSmoothie(){
-   console.log(this.title)
+    if(this.title){
+        this.feedback = null
+        // create a slug
+        this.slug = slugify(this.title, {
+          replacement: '-',
+          remove: /[$*_+~.()'"!\-:@]/g,
+          lower: true
+        })
+        //save smoothie to firestore
+        db.collection('smoothies').add({
+          title: this.title,
+          ingredients: this.ingredients,
+          slug: this.slug
+        }).then(() => {
+          this.$router.push({ name: 'Index' })
+        }).catch(err => {
+          console.log(err)
+        })
+      } else {
+        this.feedback = 'You must enter a smoothie title'
+      }
     },
     addIng(){
       if(this.another){
