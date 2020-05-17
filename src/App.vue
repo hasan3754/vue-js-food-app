@@ -1,10 +1,16 @@
 <template>
   <div id="app">
     <div id="nav">
+    <Navbar />
+    <index />
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
+            <router-link to="/AddSmoothies">Home</router-link> |
+      <router-link to="/index">About</router-link>
     </div>
     <router-view />
+
+    <button class="btn btn-danger">click me</button>
   </div>
 </template>
 
@@ -30,3 +36,16 @@
   color: #42b983;
 }
 </style>
+<script>
+import Navbar from "./components/Navbar"
+import index from "./components/index"
+
+
+export default {
+  name: "App",
+  components: {
+    Navbar,
+    index
+  }
+}
+</script>
